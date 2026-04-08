@@ -39,7 +39,7 @@
         width: 100%;
         height: 100%;
         background: black;
-        opacity: 0.35;
+        opacity: 0.28;
         z-index: -1;
       }
 
@@ -77,13 +77,17 @@
       height: auto;
       display: block;
       margin: 0 auto 35px;
-
+    
       opacity: 0;
       animation: logoReveal 2.2s ease forwards;
       animation-delay: 0.2s;
-
-      filter: drop-shadow(0 12px 30px rgba(0,0,0,0.08));
-    }
+    
+      filter: 
+        brightness(1.4)
+        contrast(1.2)
+        drop-shadow(0 0 20px rgba(255,255,255,0.15))
+        drop-shadow(0 10px 30px rgba(0,0,0,0.25));
+    }  
 
     /* 🔗 Links Container */
     .links {
