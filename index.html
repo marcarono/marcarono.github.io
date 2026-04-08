@@ -43,34 +43,29 @@
     }
 
     /* ✨ Content Fade-In (langsamer & smoother) */
-.wrap {
-  text-align: center;
-  padding: 30px 20px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeIn 1.6s ease forwards;
-
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-}
-
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-      transform: translateY(0);
+    .wrap {
+      text-align: center;
+      padding: 30px 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1.6s ease forwards;
     }
-  }
-  
-  img {
-    max-width: 700px;
-    width: 90%;
-    height: auto;
-    display: block;
-    margin: 0 auto 35px;
-  
-    filter: drop-shadow(0 10px 25px rgba(0,0,0,0.1));
-  }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    img {
+      max-width: 700px;
+      width: 90%;
+      height: auto;
+      display: block;
+      margin: 0 auto 35px;
+    }
+
     .links {
       display: flex;
       gap: 28px;
