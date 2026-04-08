@@ -10,9 +10,6 @@
       margin: 0;
       color: #111;
       font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       min-height: 100vh;
       overflow: hidden;
     }
@@ -67,40 +64,41 @@
     }
 
     .wrap {
-      text-align: center;
-      padding: 30px 20px;
-      opacity: 1;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
     }
 
     @keyframes logoReveal {
       0% {
         opacity: 0;
-        transform: scale(0.9) translateY(55px);
+        transform: translate(-12%, -20%) scale(0.9);
       }
       55% {
         opacity: 1;
       }
       100% {
         opacity: 1;
-        transform: scale(1.06) translateY(15px);
+        transform: translate(-12%, -35%) scale(1.06);
       }
     }
 
     @keyframes logoBreathe {
       0% {
-        transform: scale(1.06) translateY(15px);
+        transform: translate(-12%, -35%) scale(1.06);
       }
       100% {
-        transform: scale(1.085) translateY(15px);
+        transform: translate(-12%, -35%) scale(1.085);
       }
     }
 
     img {
+      position: absolute;
+      left: 50%;
+      top: 53%;
       max-width: 760px;
       width: 90%;
       height: auto;
-      display: block;
-      margin: 0 auto 35px;
       opacity: 0;
 
       animation:
@@ -115,12 +113,15 @@
     }
 
     .links {
+      position: absolute;
+      left: 50%;
+      bottom: 42px;
+      transform: translateX(-50%);
       display: flex;
       gap: 28px;
       justify-content: center;
       align-items: center;
       opacity: 0;
-      transform: translateY(12px);
       animation: linksReveal 1.8s ease forwards;
       animation-delay: 8.4s;
     }
@@ -128,7 +129,7 @@
     @keyframes linksReveal {
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(-50%);
       }
     }
 
