@@ -29,7 +29,7 @@
       filter: grayscale(100%) contrast(1.1);
     }
 
-    /* 🎨 Overlay für Lesbarkeit */
+    /* 🎨 Overlay */
     body::after {
       content: "";
       position: fixed;
@@ -42,13 +42,13 @@
       z-index: -1;
     }
 
-    /* ✨ Content Fade-In (langsamer & smoother) */
+    /* ✨ Container */
     .wrap {
       text-align: center;
       padding: 30px 20px;
       opacity: 0;
       transform: translateY(20px);
-      animation: fadeIn 1.6s ease forwards;
+      animation: fadeIn 1.4s ease forwards;
     }
 
     @keyframes fadeIn {
@@ -58,23 +58,47 @@
       }
     }
 
+    /* 🎬 Logo Animation */
+    @keyframes logoReveal {
+      0% {
+        opacity: 0;
+        transform: scale(0.97) translateY(15px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
     img {
       max-width: 700px;
       width: 90%;
       height: auto;
       display: block;
       margin: 0 auto 35px;
+
+      opacity: 0;
+      animation: logoReveal 2.2s ease forwards;
+      animation-delay: 0.2s;
+
+      filter: drop-shadow(0 12px 30px rgba(0,0,0,0.08));
     }
 
+    /* 🔗 Links Container */
     .links {
       display: flex;
       gap: 28px;
       justify-content: center;
       align-items: center;
+
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards;
+      animation-delay: 0.9s;
     }
 
+    /* 🔗 Icons */
     .links a {
-      color: #111;
+      color: #fff; /* WICHTIG: weiß wegen dunklem Overlay */
       display: inline-flex;
       transition: transform 0.25s ease, opacity 0.25s ease;
     }
@@ -127,7 +151,7 @@
         </svg>
       </a>
       
-      <!-- 🎧 Spotify -->
+      <!-- 🎧 Spotify Podcast -->
       <a href="https://open.spotify.com/show/6vOxWvL5tX5cXJRZwA6Wxl" target="_blank" rel="noopener noreferrer">
         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 0a12 12 0 100 24 12 12 0 000-24zm5.49 
@@ -140,7 +164,7 @@
         </svg>
       </a>
       
-      <!-- 🎵 Artist / Musikerprofil -->
+      <!-- 🎵 Artist -->
       <a href="https://open.spotify.com/artist/0BsiEuvLV6cukN6NvNntfF" target="_blank" rel="noopener noreferrer">
         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
           <path d="M3 10h2v4H3v-4zm4-3h2v10H7V7zm4-2h2v14h-2V5zm4 3h2v8h-2V8zm4 2h2v4h-2v-4z"/>
