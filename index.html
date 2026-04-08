@@ -17,7 +17,6 @@
       overflow: hidden;
     }
 
-    /* 🎬 Background Video */
     #bg-video {
       position: fixed;
       top: 0;
@@ -25,90 +24,116 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: -2;
-    
+      z-index: -3;
       filter: grayscale(100%) contrast(1.1) brightness(1.15);
+      animation: videoDrift 18s ease-in-out infinite alternate;
     }
 
-    /* 🎨 Overlay */
-      body::after {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: black;
-        opacity: 0.28;
-        z-index: -1;
+    @keyframes videoDrift {
+      0% {
+        transform: scale(1);
       }
+      100% {
+        transform: scale(1.08);
+      }
+    }
 
-    /* ✨ Container */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      opacity: 0.08;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.35) 0.5px, transparent 0.6px),
+        radial-gradient(circle at 80% 40%, rgba(255,255,255,0.25) 0.5px, transparent 0.6px),
+        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.2) 0.5px, transparent 0.6px),
+        radial-gradient(circle at 60% 60%, rgba(0,0,0,0.25) 0.5px, transparent 0.6px);
+      background-size: 120px 120px, 160px 160px, 140px 140px, 180px 180px;
+      mix-blend-mode: soft-light;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      opacity: 0.28;
+      z-index: -1;
+    }
+
     .wrap {
       text-align: center;
       padding: 30px 20px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 1.4s ease forwards;
+      opacity: 1;
     }
 
-    @keyframes fadeIn {
+    @keyframes logoReveal {
+      0% {
+        opacity: 0;
+        transform: scale(0.9) translateY(40px);
+        filter: blur(10px);
+      }
+      55% {
+        opacity: 1;
+        filter: blur(0);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1.06) translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes logoBreathe {
+      0% {
+        transform: scale(1.06);
+      }
+      100% {
+        transform: scale(1.085);
+      }
+    }
+
+    img {
+      max-width: 980px;
+      width: 92%;
+      height: auto;
+      display: block;
+      margin: 0 auto 35px;
+      opacity: 0;
+      animation:
+        logoReveal 4.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+        logoBreathe 6s ease-in-out 6s infinite alternate;
+      animation-delay: 1s, 0s;
+      filter:
+        drop-shadow(0 0 18px rgba(255,255,255,0.08))
+        drop-shadow(0 10px 30px rgba(0,0,0,0.18));
+    }
+
+    .links {
+      display: flex;
+      gap: 28px;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: linksReveal 1.8s ease forwards;
+      animation-delay: 4.8s;
+    }
+
+    @keyframes linksReveal {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
-    /* 🎬 Logo Animation */
-   @keyframes logoReveal {
-      0% {
-        opacity: 0;
-        transform: scale(0.96) translateY(25px);
-      }
-      60% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1.02) translateY(0);
-      }
-    }
-
-  img {
-    max-width: 900px;
-    width: 90%;
-    height: auto;
-    display: block;
-    margin: 0 auto 35px;
-  
-    opacity: 0;
-  
-    animation: logoReveal 4.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 1s;
-  
-    transform: scale(1.04);
-  
-    filter:
-      drop-shadow(0 0 20px rgba(255,255,255,0.08))
-      drop-shadow(0 10px 30px rgba(0,0,0,0.25));
-  }
-
-    /* 🔗 Links Container */
-    .links {
-      display: flex;
-      gap: 28px;
-      justify-content: center;
-      align-items: center;
-    
-      opacity: 0;
-    
-      animation: fadeIn 1.5s ease forwards;
-      animation-delay: 12s;
-    }
-
-    /* 🔗 Icons */
     .links a {
-      color: #fff; /* WICHTIG: weiß wegen dunklem Overlay */
+      color: #fff;
       display: inline-flex;
       transition: transform 0.25s ease, opacity 0.25s ease;
     }
@@ -122,16 +147,18 @@
       width: 34px;
       height: 34px;
     }
-
   </style>
 </head>
 
 <body>
 
-  <!-- 🎬 Background Video -->
   <video autoplay muted loop playsinline id="bg-video">
     <source src="video.mp4" type="video/mp4">
   </video>
+
+  <audio id="reveal-audio" preload="auto">
+    <source src="sound.mp3" type="audio/mpeg">
+  </audio>
 
   <div class="wrap">
 
@@ -139,43 +166,25 @@
 
     <div class="links">
 
-      <!-- 📧 Mail -->
-      <a href="mailto:beschwerden@stretchfm.de">
+      <a href="mailto:beschwerden@stretchfm.de" aria-label="E-Mail">
         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M2 4h20v16H2V4zm2 2v.511l8 5.334 8-5.334V6H4zm16 
-          2.489l-8 5.334-8-5.334V18h16V8.489z"/>
+          <path d="M2 4h20v16H2V4zm2 2v.511l8 5.334 8-5.334V6H4zm16 2.489l-8 5.334-8-5.334V18h16V8.489z"/>
         </svg>
       </a>
 
-      <!-- 📸 Instagram -->
-      <a href="https://instagram.com/stretch__fm" target="_blank" rel="noopener noreferrer">
+      <a href="https://instagram.com/stretch__fm" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 
-          5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 
-          2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 
-          3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 
-          1.346-3 3-3h10zm-5 3a5 5 0 100 
-          10 5 5 0 000-10zm0 2a3 3 0 110 
-          6 3 3 0 010-6zm4.5-2.5a1 
-          1 0 100 2 1 1 0 000-2z"/>
+          <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-2.5a1 1 0 100 2 1 1 0 000-2z"/>
         </svg>
       </a>
       
-      <!-- 🎧 Spotify Podcast -->
-      <a href="https://open.spotify.com/show/6vOxWvL5tX5cXJRZwA6Wxl" target="_blank" rel="noopener noreferrer">
+      <a href="https://open.spotify.com/show/6vOxWvL5tX5cXJRZwA6Wxl" target="_blank" rel="noopener noreferrer" aria-label="Spotify Podcast">
         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 0a12 12 0 100 24 12 12 0 000-24zm5.49 
-          17.52a.75.75 0 01-1.03.24c-2.82-1.72-6.37-2.11-10.54-1.16a.75.75 
-          0 01-.33-1.46c4.54-1.03 8.48-.6 11.65 1.29.35.21.46.67.25 
-          1.09zm1.47-3.27a.94.94 0 01-1.29.31c-3.23-1.99-8.15-2.56-11.97-1.39a.94.94 
-          0 11-.56-1.8c4.21-1.3 9.6-.67 13.45 1.63.45.27.59.85.32 
-          1.25zm.13-3.41c-3.87-2.3-10.25-2.51-13.93-1.42a1.13 1.13 0 11-.64-2.17c4.22-1.25 
-          11.24-1.01 15.75 1.63a1.13 1.13 0 11-1.18 1.96z"/>
+          <path d="M12 0a12 12 0 100 24 12 12 0 000-24zm5.49 17.52a.75.75 0 01-1.03.24c-2.82-1.72-6.37-2.11-10.54-1.16a.75.75 0 01-.33-1.46c4.54-1.03 8.48-.6 11.65 1.29.35.21.46.67.25 1.09zm1.47-3.27a.94.94 0 01-1.29.31c-3.23-1.99-8.15-2.56-11.97-1.39a.94.94 0 11-.56-1.8c4.21-1.3 9.6-.67 13.45 1.63.45.27.59.85.32 1.25zm.13-3.41c-3.87-2.3-10.25-2.51-13.93-1.42a1.13 1.13 0 11-.64-2.17c4.22-1.25 11.24-1.01 15.75 1.63a1.13 1.13 0 11-1.18 1.96z"/>
         </svg>
       </a>
       
-      <!-- 🎵 Artist -->
-      <a href="https://open.spotify.com/artist/0BsiEuvLV6cukN6NvNntfF" target="_blank" rel="noopener noreferrer">
+      <a href="https://open.spotify.com/artist/0BsiEuvLV6cukN6NvNntfF" target="_blank" rel="noopener noreferrer" aria-label="Spotify Artist">
         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
           <path d="M3 10h2v4H3v-4zm4-3h2v10H7V7zm4-2h2v14h-2V5zm4 3h2v8h-2V8zm4 2h2v4h-2v-4z"/>
         </svg>
@@ -184,5 +193,20 @@
     </div>
 
   </div>
+
+  <script>
+    let soundPlayed = false;
+    const audio = document.getElementById('reveal-audio');
+
+    function playRevealSound() {
+      if (!soundPlayed) {
+        audio.play().catch(() => {});
+        soundPlayed = true;
+      }
+    }
+
+    window.addEventListener('click', playRevealSound, { once: true });
+    window.addEventListener('touchstart', playRevealSound, { once: true });
+  </script>
 </body>
 </html>
