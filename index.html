@@ -88,32 +88,32 @@
 
     @keyframes logoBreathe {
       0% {
-        transform: scale(1.06);
+        transform: scale(1.06) translateY(15px);
       }
       100% {
-        transform: scale(1.085);
+        transform: scale(1.085) translateY(15px);
       }
     }
 
-   img {
-    max-width: 760px;
-    width: 90%;
-    height: auto;
-    display: block;
-    margin: 0 auto 35px;
-    opacity: 0;
-  
-    animation:
-      logoReveal 4.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-      logoBreathe 6s ease-in-out 6s infinite alternate;
-  
-    animation-delay: 3s, 0s;
-  
-    filter:
-      drop-shadow(0 0 18px rgba(255,255,255,0.08))
-      drop-shadow(0 10px 30px rgba(0,0,0,0.18));
-  }
-    
+    img {
+      max-width: 760px;
+      width: 90%;
+      height: auto;
+      display: block;
+      margin: 0 auto 35px;
+      opacity: 0;
+
+      animation:
+        logoReveal 4.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+        logoBreathe 6s ease-in-out infinite alternate;
+
+      animation-delay: 3s, 7.8s;
+
+      filter:
+        drop-shadow(0 0 18px rgba(255,255,255,0.08))
+        drop-shadow(0 10px 30px rgba(0,0,0,0.18));
+    }
+
     .links {
       display: flex;
       gap: 28px;
@@ -122,7 +122,7 @@
       opacity: 0;
       transform: translateY(12px);
       animation: linksReveal 1.8s ease forwards;
-      animation-delay: 4s;
+      animation-delay: 8.4s;
     }
 
     @keyframes linksReveal {
