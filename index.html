@@ -60,18 +60,21 @@
     }
 
     /* 🎬 Logo Animation */
-    @keyframes logoReveal {
+   @keyframes logoReveal {
       0% {
         opacity: 0;
-        transform: scale(0.97) translateY(15px);
+        transform: scale(0.96) translateY(25px);
+      }
+      60% {
+        opacity: 1;
       }
       100% {
         opacity: 1;
-        transform: scale(1) translateY(0);
+        transform: scale(1.02) translateY(0);
       }
     }
 
-    img {
+   img {
       max-width: 700px;
       width: 90%;
       height: auto;
@@ -79,15 +82,19 @@
       margin: 0 auto 35px;
     
       opacity: 0;
-      animation: logoReveal 2.2s ease forwards;
-      animation-delay: 0.2s;
     
-      filter: 
-        brightness(1.4)
-        contrast(1.2)
-        drop-shadow(0 0 20px rgba(255,255,255,0.15))
-        drop-shadow(0 10px 30px rgba(0,0,0,0.25));
-    }  
+      animation: logoReveal 3.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation-delay: 0.8s;
+    
+      transform: scale(1.02);
+    
+      filter:
+        brightness(1.5)
+        contrast(1.25)
+        drop-shadow(0 0 2px rgba(0,0,0,0.6))
+        drop-shadow(0 0 6px rgba(0,0,0,0.4))
+        drop-shadow(0 15px 40px rgba(0,0,0,0.35));
+    }
 
     /* 🔗 Links Container */
     .links {
