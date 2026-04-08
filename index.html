@@ -72,41 +72,44 @@
     @keyframes logoReveal {
       0% {
         opacity: 0;
-        transform: translate(-50%, -20%) scale(0.9);
+        transform: translate(-50%, -15%) scale(0.9);
+        filter: blur(10px);
       }
       55% {
         opacity: 1;
+        filter: blur(0);
       }
       100% {
         opacity: 1;
-        transform: translate(-50%, -35%) scale(1.06);
+        transform: translate(-50%, 10px) scale(1.06);
+        filter: blur(0);
       }
     }
-
+    
     @keyframes logoBreathe {
       0% {
-        transform: translate(-50%, -35%) scale(1.06);
+        transform: translate(-50%, 10px) scale(1.06);
       }
       100% {
-        transform: translate(-50%, -35%) scale(1.085);
+        transform: translate(-50%, 10px) scale(1.085);
       }
     }
 
     img {
       position: absolute;
       left: 50%;
-      top: 53%;
+      top: 50%;
       max-width: 760px;
       width: 90%;
       height: auto;
       opacity: 0;
-
+    
       animation:
         logoReveal 4.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
         logoBreathe 6s ease-in-out infinite alternate;
-
+    
       animation-delay: 3s, 7.8s;
-
+    
       filter:
         drop-shadow(0 0 18px rgba(255,255,255,0.08))
         drop-shadow(0 10px 30px rgba(0,0,0,0.18));
